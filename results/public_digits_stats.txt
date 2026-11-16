@@ -1,0 +1,22 @@
+UCI Optical Recognition of Handwritten Digits (N=50, |S_t|=10, q=0.20, T=200, dims=(64,64,10), d=4810, total_crypto_mismatches=0)
+
+             Algorithm Nominal_Sigma Eps_Agg_RDP Eps_Agg_PLD Eps_ServerView_RDP Eps_ServerView_PLD  Payload_KiB  Accuracy_Mean  Accuracy_SD  F1_Mean  F1_SD  AUC_Mean  MAE_Mean                        Per_Seed_Acc
+        Vanilla FedAvg          None         Inf         Inf                Inf                Inf        18.79          97.33         1.16   0.9733 0.0115    0.9992    0.1070 [96.94, 97.49, 98.33, 98.33, 95.54]
+               FedProx          None         Inf         Inf                Inf                Inf        18.79          97.33         1.16   0.9733 0.0115    0.9992    0.1070 [96.94, 97.49, 98.33, 98.33, 95.54]
+              SCAFFOLD          None         Inf         Inf                Inf                Inf        37.58          97.38         1.16   0.9738 0.0116    0.9989    0.1036 [96.66, 97.49, 98.33, 98.61, 95.82]
+             DP-FedAvg           1.0        4.44        4.08              23.42              21.54        18.79          60.89         3.32   0.6066 0.0344    0.8331    1.4958  [56.27, 61.84, 61.0, 65.46, 59.89]
+FL + Distributed Noise           1.0       23.42       21.54             630.09             255.02        18.79          81.45         1.36   0.8145 0.0144    0.9751    0.7237 [82.17, 81.62, 79.39, 83.01, 81.06]
+      PQ-FL (Proposed)           1.0       23.42       21.54              23.42              21.54       226.00          82.67         2.21   0.8267 0.0223    0.9770    0.6830 [83.01, 83.29, 79.39, 85.52, 82.17]
+PQ-FL (sigma=sqrt(10))        3.1623        4.44        4.08               4.44               4.08       226.00          60.78         5.86   0.6010 0.0599    0.8200    1.5103  [56.82, 56.55, 64.9, 69.08, 56.55]
+
+================================================================================
+   Statistical Significance Analysis (Seed-Aligned Paired t-tests)   
+================================================================================
+Comparison                           | Delta Acc  | t(df)      | p-value      | Cohen dz
+--------------------------------------------------------------------------------
+PQ-FL (Proposed) vs DP-FedAvg        | +21.78 pp  | t(4)= 15.50 |  1.010e-04 *** |    6.93
+PQ-FL (Proposed) vs Vanilla FedAvg   | -14.65 pp  | t(4)=-13.33 |  1.829e-04 *** |   -5.96
+PQ-FL (Proposed) vs FL + Distributed Noise |  +1.23 pp  | t(4)=  2.93 |  4.295e-02 *  |    1.31
+PQ-FL (sigma=sqrt(10)) vs DP-FedAvg  |  -0.11 pp  | t(4)= -0.06 |  9.546e-01 ns |   -0.03
+================================================================================
+Note: * p < 0.05, ** p < 0.01, *** p < 0.001, ns = not statistically significant.

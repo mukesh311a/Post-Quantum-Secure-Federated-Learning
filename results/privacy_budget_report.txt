@@ -1,0 +1,35 @@
+========================================================================================
+  Differential Privacy Accounting Report (Google dp-accounting v0.6.0)
+========================================================================================
+Protocol & Accounting Configuration:
+  - Adjacency relation          : Add/remove one client's complete local dataset
+  - Subsampling model           : Poisson subsampling (q = 0.10, |S_t|=10, N=100)
+  - Communication rounds (T)    : 200
+  - Target failure prob (delta) : 1.0e-05
+  - Adaptive clipping budget    : Joint (g_tilde, b_tilde) release per Andrew et al. (2021),
+                                  sigma_b = 5.0 * sigma, sigma_g = (sigma^-2 - sigma_b^-2)^(-1/2)
+  - Joint composition check     : single-event RDP = 11.063104146796 vs composed-event RDP = 11.063104146796 (|diff| = 0.00e+00)
+----------------------------------------------------------------------------------------
+[1] PQ-FL (Distributed Noise + Private Adaptive Quantile Clipping + SecAgg):
+    - Target joint sigma        : 1.0000 (sigma_g = 1.020621, sigma_b = 5.00)
+    - RDP composed epsilon      : 11.063 (optimal order alpha* = 2.80, approx. 11.1)
+    - PLD composed epsilon      : 9.971 (approx. 10.0)
+    - Note (FL + Dist. Noise without SecAgg): aggregate release has eps_RDP = 11.063,
+      but an honest-but-curious server observing raw shares (sigma_view = 1/sqrt(10) = 0.3162)
+      faces weak server-view privacy loss eps_RDP(server) = 343.94.
+
+[2] DP-FedAvg (Independent Per-Client Local Noise, sigma_local = 1.0):
+    - Per-client local sigma    : 1.0000 -> server-view eps_RDP = 11.063 (eps_PLD = 9.971)
+    - Aggregate effective sigma : 3.1623 (sqrt(10) * sigma_local)
+    - Aggregate RDP epsilon     : 2.057 (optimal order alpha* = 9.60, approx. 2.06)
+    - Aggregate PLD epsilon     : 1.880 (approx. 1.88)
+
+[3] Multi-Budget & Privacy-Matched Sensitivity Table (T=200, q=0.10, delta=1e-5):
+    | Configuration / Noise Multiplier         | sigma_g | sigma_b | RDP Eps | PLD Eps |
+    |------------------------------------------|---------|---------|---------|---------|
+    | PQ-FL (sigma = 1.000, server-matched)    |  1.0206 |    5.00 |  11.063 |   9.971 |
+    | PQ-FL (sigma = 2.000, moderate budget)   |  2.0412 |   10.00 |   3.680 |   3.360 |
+    | PQ-FL (sigma = sqrt(10), release-matched)|  3.2275 |   15.81 |   2.057 |   1.880 |
+    | DP-FedAvg (sigma_local = 1.000)          |  1.0206 |    5.00 |   2.057 |   1.880 |
+    | PQ-FL (sigma = 4.000, tightest budget)   |  4.0825 |   20.00 |   1.557 |   1.422 |
+========================================================================================

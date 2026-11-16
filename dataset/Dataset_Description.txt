@@ -1,0 +1,26 @@
+# Synthetic 6G-IoT federated dataset
+
+Label rule: Device_Type (4 classes, uniform prior) is drawn first; the 7 features are drawn from
+class-conditional Gaussians (log-normal for Data_Volume_MB, where mu and sigma specify ln(MB))
+and clipped to the physical ranges below.
+
+| Feature | Range |
+|---|---|
+| Signal_Strength_dBm | [-120.0, -50.0] |
+| Latency_ms | [5.0, 200.0] |
+| Heart_Rate_bpm | [40.0, 180.0] |
+| Location_X | [0.0, 1.0] |
+| Location_Y | [0.0, 1.0] |
+| Battery_Level | [10.0, 100.0] |
+| Data_Volume_MB | [0.1, 500.0] |
+
+Class-conditional (mean, std):
+
+- SmartSensor: Signal_Strength_dBm=(-88,10), Latency_ms=(110,40), Heart_Rate_bpm=(72,20), Location_X=(0.5,0.3), Location_Y=(0.5,0.3), Battery_Level=(80,12), Data_Volume_MB=(1.0,0.6)
+- Wearable: Signal_Strength_dBm=(-72,10), Latency_ms=(60,25), Heart_Rate_bpm=(90,14), Location_X=(0.5,0.25), Location_Y=(0.4,0.25), Battery_Level=(55,18), Data_Volume_MB=(2.3,0.6)
+- AutonomousVehicle: Signal_Strength_dBm=(-62,8), Latency_ms=(22,10), Heart_Rate_bpm=(70,18), Location_X=(0.25,0.15), Location_Y=(0.65,0.15), Battery_Level=(85,10), Data_Volume_MB=(4.6,0.6)
+- IndustrialController: Signal_Strength_dBm=(-80,10), Latency_ms=(40,15), Heart_Rate_bpm=(74,20), Location_X=(0.8,0.1), Location_Y=(0.2,0.1), Battery_Level=(95,5), Data_Volume_MB=(3.6,0.6)
+
+Columns: Record_ID, 7 features, Device_Type, Label (0-3), Split (train/test), Client_ID (-1 for test records).
+Client partition: per-class Dirichlet(alpha=0.5) over 100 clients (min_size=8); 20 % stratified test split (8,000 train / 2,000 test).
+Preprocessing: zero-mean unit-variance standardisation fitted exclusively on the 8,000 training records (zero test-set leakage).

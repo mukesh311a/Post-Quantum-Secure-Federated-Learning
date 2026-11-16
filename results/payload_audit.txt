@@ -1,0 +1,23 @@
+Payload Audit (6G-IoT d=9,540 params, F=12 bit-planes, N_R=256, q=12289, t=12)
+==============================================================================================
+1. Vanilla FedAvg / FedProx (float32)       :    38,160 B =    37.27 KiB  (d * 4 B)
+2. SCAFFOLD (float32 w_k + control delta_c) :    76,320 B =    74.53 KiB  (2 * d * 4 B)
+3. DP-FedAvg / FL+DistNoise (float32 + b_k) :    38,164 B =    37.27 KiB  ((d + 1) * 4 B)
+4. FL + Secure Aggregation (uint8 in Z_t)   :   114,480 B =   111.80 KiB  (d * F * 1 B)
+5. FL + PQ Encryption Only (u,v uint16)     :   458,752 B =   448.00 KiB  (448 blocks, 208 zero-padded slots)
+6. PQ-FL (Proposed, d+1 scalars encrypted)  :   458,752 B =   448.00 KiB  (448 blocks, 196 zero-padded slots)
+   - Hypothetical 14-bit bit-packed size    :   401,408 B =   392.00 KiB
+   - Expansion vs float32 plaintext         :  12.02x     vs SecAgg masked digits: 4.01x
+7. UCI Digits PQ-FL (d=4,810+1 scalars)    :   231,424 B =   226.00 KiB  (226 blocks of 256 coeffs)
+8. LEAF FEMNIST PQ-FL (d=16,638+1 scalars)  :   798,720 B =   780.00 KiB  (780 blocks of 256 coeffs; float32 FedAvg = 66,552 B = 64.99 KiB)
+
+Exact arithmetic reconciliation with '10 blocks x 2 x 1024 x 14 bits = 35 KiB':
+  (a) Bit-plane expansion: each coefficient in Z_t (t=12) carries 1 bit-plane digit in {0,1} prior to
+      masking so n=10 client digits sum in [0,10] < t without modular wraparound. Encoding 9,540 parameters
+      (+1 clipping indicator in PQ-FL) at F=12 bit-planes produces 114,492 coefficients, not 9,540.
+  (b) Block count: at N_R=256, ceil(114,492 / 256) = 448 blocks (equivalent in total coefficients to 112 blocks at N_R=1024, i.e., 11.2x more than 10 blocks).
+  (c) Coefficient alignment: residues mod q=12289 (< 2^16) are serialised as 16-bit uint16 (2 B/coeff)
+      rather than 14-bit packed streams: 448 blocks * 2 polys * 256 coeffs * 2 B = 458,752 B = 448.00 KiB
+      (note: (112 / 10) * 35 KiB * (16 / 14) = 448.00 KiB).
+  (d) Scope: counts per-round client-to-server ciphertext upload; excludes one-time public-key broadcast,
+      one-time pairwise key establishment, and transport-layer (TCP/TLS) framing headers.

@@ -1,0 +1,41 @@
+Algorithm,Seed,Mismatched_Coords,Clamped_Coords,Coords_Decoded,Mean_Clip_Threshold,Mean_Clipped_Fraction,Mean_Update_Norm,Sigma_Grad,Sigma_Quantile
+Vanilla FedAvg,42,0,0,0,,,0.06831,,
+FedProx,42,0,0,0,,,0.06827,,
+SCAFFOLD,42,0,0,0,,,0.02954,,
+DP-FedAvg,42,0,0,0,0.97802,0.89,3.5668,1.02062,5.0
+FL + Distributed Noise,42,0,0,0,0.13117,0.273,0.0853,1.02062,5.0
+FL + Secure Aggregation,42,0,0,1908000,,,0.06831,,
+FL + PQ Encryption Only,42,0,0,1908000,,,0.06831,,
+PQ-FL (Proposed),42,0,0,1908200,0.14027,0.26,0.0881,1.02062,5.0
+Vanilla FedAvg,123,0,0,0,,,0.07093,,
+FedProx,123,0,0,0,,,0.07089,,
+SCAFFOLD,123,0,0,0,,,0.0302,,
+DP-FedAvg,123,0,0,0,0.98456,0.923,3.90459,1.02062,5.0
+FL + Distributed Noise,123,0,0,0,0.13951,0.251,0.09022,1.02062,5.0
+FL + Secure Aggregation,123,0,0,1908000,,,0.07093,,
+FL + PQ Encryption Only,123,0,0,1908000,,,0.07093,,
+PQ-FL (Proposed),123,0,0,1908200,0.13661,0.284,0.08819,1.02062,5.0
+Vanilla FedAvg,456,0,0,0,,,0.07428,,
+FedProx,456,0,0,0,,,0.07423,,
+SCAFFOLD,456,0,0,0,,,0.03033,,
+DP-FedAvg,456,0,0,0,0.9624,0.8685,2.93455,1.02062,5.0
+FL + Distributed Noise,456,0,0,0,0.14794,0.253,0.09307,1.02062,5.0
+FL + Secure Aggregation,456,0,0,1908000,,,0.07428,,
+FL + PQ Encryption Only,456,0,0,1908000,,,0.07428,,
+PQ-FL (Proposed),456,0,0,1908200,0.13144,0.2575,0.08772,1.02062,5.0
+Vanilla FedAvg,789,0,0,0,,,0.07599,,
+FedProx,789,0,0,0,,,0.07594,,
+SCAFFOLD,789,0,0,0,,,0.02971,,
+DP-FedAvg,789,0,0,0,0.98019,0.887,3.53029,1.02062,5.0
+FL + Distributed Noise,789,0,0,0,0.1346,0.2705,0.09207,1.02062,5.0
+FL + Secure Aggregation,789,0,0,1908000,,,0.07599,,
+FL + PQ Encryption Only,789,0,0,1908000,,,0.076,,
+PQ-FL (Proposed),789,0,0,1908200,0.13603,0.2785,0.09643,1.02062,5.0
+Vanilla FedAvg,1024,0,0,0,,,0.07945,,
+FedProx,1024,0,0,0,,,0.0794,,
+SCAFFOLD,1024,0,0,0,,,0.03259,,
+DP-FedAvg,1024,0,0,0,0.98345,0.9155,4.55483,1.02062,5.0
+FL + Distributed Noise,1024,0,0,0,0.16168,0.2655,0.10423,1.02062,5.0
+FL + Secure Aggregation,1024,0,0,1908000,,,0.07945,,
+FL + PQ Encryption Only,1024,0,0,1908000,,,0.07945,,
+PQ-FL (Proposed),1024,0,0,1908200,0.14536,0.2485,0.09404,1.02062,5.0

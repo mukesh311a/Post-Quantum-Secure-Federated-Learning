@@ -1,0 +1,13 @@
+platform: Windows-11-10.0.26300-SP0
+processor: Intel64 Family 6 Model 142 Stepping 12, GenuineIntel
+python: 3.12.10
+torch: 2.2.2+cpu (torch.set_num_threads=1, CPU only)
+numpy: 1.26.4
+pandas: 3.0.5
+scipy: 1.17.1
+scikit-learn: 1.3.2
+dp-accounting: 0.6.0
+pairwise_setup_N100_mean_s: 2.248
+pairwise_setup_N100_std_s: 0.217
+pairwise_setup_N100_mismatches: 0
+timing boundary: time.perf_counter around each stage inside src/fl/trainer.py; wall-clock = whole run_method call executing 10 clients sequentially on 1 CPU thread

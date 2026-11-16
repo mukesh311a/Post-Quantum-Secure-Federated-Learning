@@ -1,0 +1,25 @@
+Decryption-correctness analysis of aggregated Ring-LWE ciphertexts
+eta=2, t=12, n=10 aggregated ciphertexts, d+1=9541 scalars x F=12 bit-planes = 114492 active digit coefficients per PQ-FL upload
+======================================================================================================
+N_R = 256, q = 12289 (Delta = 1024) -- Evaluated prototype configuration
+  blocks/upload = 448, decoded coefficients/round = 114688
+  analytic : noise sd = 71.62, decoding margin = 512.0 (= 7.15 sd), worst-case wrap shift = 9
+             P(fail) per coeff = 1.262e-12, per round = 1.447e-07, per 200-round run = 2.894e-05
+  measured : 1,024,000 aggregated coefficients, residual sd = 71.56 (max |noise| = 407), decoding errors = 0  (error rate 0.000e+00)
+
+N_R = 1024, q = 12289 (Delta = 1024) -- Unscaled modulus at N_R=1024 (illustrates why q=12289 cannot aggregate 10 cts at N_R=1024)
+  blocks/upload = 112, decoded coefficients/round = 114688
+  analytic : noise sd = 143.14, decoding margin = 512.0 (= 3.58 sd), worst-case wrap shift = 9
+             P(fail) per coeff = 3.572e-04, per round = 1.000e+00, per 200-round run = 1.000e+00
+  measured : 1,024,000 aggregated coefficients, residual sd = 142.48 (max |noise| = 738), decoding errors = 317  (error rate 3.096e-04)
+
+N_R = 1024, q = 65537 (Delta = 5461) -- Modulus-scaled N_R=1024 configuration (Fermat prime q=65537)
+  blocks/upload = 112, decoded coefficients/round = 114688
+  analytic : noise sd = 143.14, decoding margin = 2730.5 (= 19.08 sd), worst-case wrap shift = 45
+             P(fail) per coeff = 7.882e-79, per round = 9.040e-74, per 200-round run = 1.808e-71
+  measured : 1,024,000 aggregated coefficients, residual sd = 142.48 (max |noise| = 738), decoding errors = 0  (error rate 0.000e+00)
+
+Interpretation: with the prototype configuration (N_R=256, q=12289, t=12) the decoding margin is 7.15 sd
+and 0 decoding errors occur across 1,024,000 standalone coefficients as well as all training coordinates
+logged in results/Run_Diagnostics_Per_Seed.csv. Scaling the ring dimension to N_R=1024 while retaining
+10-client additive aggregation requires scaling q (e.g. q=65537 gives a 19.07 sd margin with 0 errors).

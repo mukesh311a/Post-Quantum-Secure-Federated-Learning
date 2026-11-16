@@ -1,0 +1,21 @@
+                  Configuration  Nominal_Sigma  Grad_Sigma_Agg  Quantile_Sigma_b  Effective_Sigma_Agg  Effective_Sigma_ServerView  Eps_Agg_RDP  Optimal_RDP_Alpha  Eps_Agg_PLD  Eps_ServerView_RDP  Eps_ServerView_PLD  SecAgg  PQ_Encryption  Accuracy_Mean  Accuracy_SD  F1_Mean  F1_SD                        Per_Seed_Acc
+              PQ-FL (sigma=1.0)         1.0000          1.0206            5.0000               1.0000                      1.0000        11.06                2.8         9.97               11.06                9.97    True           True          95.50         0.25   0.9550 0.0024    [95.1, 95.65, 95.65, 95.7, 95.4]
+              PQ-FL (sigma=2.0)         2.0000          2.0412           10.0000               2.0000                      2.0000         3.68                6.0         3.36                3.68                3.36    True           True          92.49         1.34   0.9249 0.0132   [92.25, 93.4, 93.8, 90.35, 92.65]
+         PQ-FL (sigma=sqrt(10))         3.1623          3.2275           15.8114               3.1623                      3.1623         2.06                9.6         1.88                2.06                1.88    True           True          91.29         1.08   0.9131 0.0100 [90.65, 92.75, 91.25, 89.95, 91.85]
+              PQ-FL (sigma=4.0)         4.0000          4.0825           20.0000               4.0000                      4.0000         1.56               12.0         1.42                1.56                1.42    True           True          89.40         3.42   0.8940 0.0327      [85.0, 87.1, 93.3, 89.6, 92.0]
+     FL + DistNoise (sigma=1.0)         1.0000          1.0206            5.0000               1.0000                      0.3162        11.06                2.8         9.97              343.94              141.72   False          False          95.84         0.45   0.9583 0.0043  [95.05, 96.05, 95.95, 96.15, 96.0]
+FL + DistNoise (sigma=sqrt(10))         3.1623          3.2275           15.8114               3.1623                      1.0000         2.06                9.6         1.88               11.06                9.97   False          False          90.08         4.09   0.9011 0.0394    [91.75, 92.3, 93.5, 83.2, 89.65]
+    DP-FedAvg (sigma_local=1.0)         1.0000          3.2275           15.8114               3.1623                      1.0000         2.06                9.6         1.88               11.06                9.97   False          False          91.18         1.00   0.9117 0.0099    [91.2, 91.15, 89.6, 92.3, 91.65]
+
+================================================================================
+   Statistical Significance Analysis (Seed-Aligned Paired t-tests)   
+================================================================================
+Comparison                           | Delta Acc  | t(df)      | p-value      | Cohen dz
+--------------------------------------------------------------------------------
+PQ-FL (sigma=1.0) vs DP-FedAvg (sigma_local=1.0) |  +4.32 pp  | t(4)=  9.24 |  7.630e-04 *** |    4.13
+PQ-FL (sigma=sqrt(10)) vs DP-FedAvg (sigma_local=1.0) |  +0.11 pp  | t(4)=  0.15 |  8.897e-01 ns |    0.07
+PQ-FL (sigma=sqrt(10)) vs FL + DistNoise (sigma=sqrt(10)) |  +1.21 pp  | t(4)=  0.77 |  4.850e-01 ns |    0.34
+PQ-FL (sigma=2.0) vs DP-FedAvg (sigma_local=1.0) |  +1.31 pp  | t(4)=  1.31 |  2.606e-01 ns |    0.59
+PQ-FL (sigma=4.0) vs DP-FedAvg (sigma_local=1.0) |  -1.78 pp  | t(4)= -1.03 |  3.625e-01 ns |   -0.46
+================================================================================
+Note: * p < 0.05, ** p < 0.01, *** p < 0.001, ns = not statistically significant.

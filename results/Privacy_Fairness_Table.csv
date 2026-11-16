@@ -1,0 +1,9 @@
+Algorithm,Accuracy (%),Privacy Score,Privacy Fairness Index,Final Acc Std (s_j),Seed Stability Score
+Vanilla FedAvg,95.88,1.0,0.959,0.44,6.03
+FedProx,95.88,1.0,0.959,0.44,6.03
+SCAFFOLD,95.92,1.0,0.959,0.427,6.15
+DP-FedAvg,91.18,7.0,6.383,0.997,1.0
+FL + Distributed Noise,95.84,7.0,6.709,0.448,5.96
+FL + Secure Aggregation,95.88,5.0,4.794,0.44,6.03
+FL + PQ Encryption Only,95.88,3.0,2.876,0.44,6.03
+PQ-FL (Proposed),95.5,9.8,9.359,0.252,7.72

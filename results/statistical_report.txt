@@ -1,0 +1,24 @@
+================================================================================
+   Statistical Significance Analysis (Seed-Aligned Paired t-tests)   
+================================================================================
+Comparison                           | Delta Acc  | t(df)      | p-value      | Cohen dz
+--------------------------------------------------------------------------------
+PQ-FL (Proposed) vs Vanilla FedAvg   |  -0.38 pp  | t(4)= -4.09 |  1.503e-02 *  |   -1.83
+PQ-FL (Proposed) vs FedProx          |  -0.38 pp  | t(4)= -4.09 |  1.503e-02 *  |   -1.83
+PQ-FL (Proposed) vs SCAFFOLD         |  -0.42 pp  | t(4)= -5.06 |  7.200e-03 ** |   -2.26
+PQ-FL (Proposed) vs DP-FedAvg        |  +4.32 pp  | t(4)=  9.24 |  7.630e-04 *** |    4.13
+PQ-FL (Proposed) vs FL + Distributed Noise |  -0.34 pp  | t(4)= -3.12 |  3.541e-02 *  |   -1.40
+PQ-FL (Proposed) vs FL + Secure Aggregation |  -0.38 pp  | t(4)= -4.09 |  1.503e-02 *  |   -1.83
+PQ-FL (Proposed) vs FL + PQ Encryption Only |  -0.38 pp  | t(4)= -4.09 |  1.503e-02 *  |   -1.83
+================================================================================
+Note: * p < 0.05, ** p < 0.01, *** p < 0.001, ns = not statistically significant.
+
+Final Metrics per Method (Mean +/- Sample SD across 5 seeds):
+  Vanilla FedAvg            : Acc=[95.25, 96.3, 96.15, 96.1, 95.6] (Mean=95.88% +/- 0.44%, F1=0.9587+/-0.0043, AUC=0.9964+/-0.0007, MAE=0.0524+/-0.0051, FirstRound>=85%=9)
+  FedProx                   : Acc=[95.25, 96.3, 96.15, 96.1, 95.6] (Mean=95.88% +/- 0.44%, F1=0.9587+/-0.0043, AUC=0.9964+/-0.0007, MAE=0.0524+/-0.0051, FirstRound>=85%=9)
+  SCAFFOLD                  : Acc=[95.25, 96.3, 96.15, 96.15, 95.75] (Mean=95.92% +/- 0.43%, F1=0.9591+/-0.0042, AUC=0.9964+/-0.0007, MAE=0.0522+/-0.0050, FirstRound>=85%=9)
+  DP-FedAvg                 : Acc=[91.2, 91.15, 89.6, 92.3, 91.65] (Mean=91.18% +/- 1.00%, F1=0.9117+/-0.0099, AUC=0.9422+/-0.0063, MAE=0.1174+/-0.0071, FirstRound>=85%=54)
+  FL + Distributed Noise    : Acc=[95.05, 96.05, 95.95, 96.15, 96.0] (Mean=95.84% +/- 0.45%, F1=0.9583+/-0.0043, AUC=0.9963+/-0.0003, MAE=0.0543+/-0.0057, FirstRound>=85%=9)
+  FL + Secure Aggregation   : Acc=[95.25, 96.3, 96.15, 96.1, 95.6] (Mean=95.88% +/- 0.44%, F1=0.9587+/-0.0043, AUC=0.9964+/-0.0007, MAE=0.0524+/-0.0051, FirstRound>=85%=9)
+  FL + PQ Encryption Only   : Acc=[95.25, 96.3, 96.15, 96.1, 95.6] (Mean=95.88% +/- 0.44%, F1=0.9587+/-0.0043, AUC=0.9964+/-0.0007, MAE=0.0524+/-0.0051, FirstRound>=85%=9)
+  PQ-FL (Proposed)          : Acc=[95.1, 95.65, 95.65, 95.7, 95.4] (Mean=95.50% +/- 0.25%, F1=0.9550+/-0.0024, AUC=0.9959+/-0.0007, MAE=0.0593+/-0.0044, FirstRound>=85%=9)

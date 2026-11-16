@@ -1,0 +1,9 @@
+Algorithm,Payload (Bytes),Payload (KiB),Client Local Train+DP (ms),Client Encode+Mask (ms),Client Encrypt (ms),Client Crypto Overhead (ms),Server Aggregation Overhead (ms),"Per-Round Wall-Clock (s, mean)","Per-Round Wall-Clock (s, std)","Run Wall-Clock T=200 (s, mean)","Run Wall-Clock T=200 (s, std)"
+Vanilla FedAvg,38160,37.27,11.61,0.0,0.0,0.0,0.24,0.127,0.01,25.3,2.1
+FedProx,38160,37.27,12.05,0.0,0.0,0.0,0.22,0.131,0.004,26.2,0.8
+SCAFFOLD,76320,74.53,11.95,0.0,0.0,0.0,0.24,0.131,0.008,26.2,1.6
+DP-FedAvg,38164,37.27,12.27,0.0,0.0,0.0,0.18,0.133,0.011,26.7,2.2
+FL + Distributed Noise,38164,37.27,11.44,0.0,0.0,0.0,0.17,0.125,0.004,24.9,0.8
+FL + Secure Aggregation,114480,111.8,11.53,25.69,0.0,25.69,1.59,0.386,0.013,77.2,2.6
+FL + PQ Encryption Only,458752,448.0,12.13,0.92,25.89,26.8,104.56,0.507,0.014,101.3,2.8
+PQ-FL (Proposed),458752,448.0,12.19,26.56,25.85,52.41,10.8,0.691,0.031,138.3,6.2
